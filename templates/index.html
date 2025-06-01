@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Visit Later</title>
+	</head>
+	<body>
+		<h1> Welcome to Visit Later </h1>
+		<p>
+			<b> Save any url to visit it later </b> <br>
+			{% for entry in entries %}
+				{{entry[0]}} {{entry[1]}}
+				<br>
+			{% endfor %}
+		</p>
+	</body>
+</html>

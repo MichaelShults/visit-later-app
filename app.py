@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, current_app
 
 DATABASE = 'database/db.sqlite'
 
@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 # Database
 #####################
+
 
 def insert_into_db(url, title):
     conn = sqlite3.connect(DATABASE)
@@ -48,6 +49,11 @@ create_database()
 def index():
     entries = get_entries_from_db()
     return render_template("index.html", entries = entries)
+
+
+@app.route("/about", methods = ["GET"])
+def about():
+    return render_template("about.html")
 
 ######################
  

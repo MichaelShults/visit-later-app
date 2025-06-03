@@ -1,0 +1,3 @@
+link_dictionary:
+  "Contact Us": "localhost:5000/contact"
+  "Contact": "localhost:5000/contact"

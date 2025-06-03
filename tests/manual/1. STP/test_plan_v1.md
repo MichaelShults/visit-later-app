@@ -9,9 +9,10 @@ We test the basic functionality of the UI and edge cases for inputs. We aim for 
 - Smoke test, verify menu functionality, displaying items fetched from database. Verify all these work across different browsers
 
 ## Features that will be tested
-- Basic loading of the pages
-- Main menu
-- App UI
+1. Basic loading of the pages
+2. Main menu
+3. Links in pages
+4. App UI
 
 ## Features that will not be tested
 - SQL Injection / security
@@ -24,7 +25,7 @@ We test the basic functionality of the UI and edge cases for inputs. We aim for 
 - Manual exploratory testing (UI)
 
 ## Tools and Environment
-- Windows 11 Desktop: Chrome, Firefox, Opera - latest versions
+- Windows 11 Desktop: Chrome, Firefox, Opera, Edge - latest versions
 - Fully manual testing with a regular browser
 
 ## Documents and Artifacts

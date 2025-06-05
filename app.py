@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, g, current_app
+from flask import Flask, render_template, request, redirect
 
 DATABASE = 'database/db.sqlite'
 
@@ -58,6 +58,14 @@ def about():
 @app.route("/contact", methods=["GET"])
 def contact():
     return render_template("contact.html")
+
+@app.route("/add", methods=["POST"])
+def add_link():
+    title = request.form.get("title")
+    url = request.form.get("url")
+    insert_into_db(url, title)
+    return redirect("/")
+
 
 ######################
  

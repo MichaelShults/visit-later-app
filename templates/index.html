@@ -16,5 +16,14 @@
 				<br>
 			{% endfor %}
 		</p>
+		<div>
+			<form action="{{url_for('add_link')}}" method="post">
+				<label for="title">Title:</label>
+				<input type="text" id="title" name="title"><br><br>
+				<label for="url">URL:</label>
+				<input type="text" id="url" name="url"><br><br>
+				<input type="submit" value="Add URL">
+			</form>
+		</div>
 	</body>
 </html>

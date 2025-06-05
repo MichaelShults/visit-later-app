@@ -5,7 +5,7 @@
 It aims to be convenient and user friendly.
 You will be able to save any type of link - videos, articles, etc.
 
-**Current app version:** v0.0.3 (in development)
+**Current app version:** v0.0.3
 
  ### Features that I may add over time:
 - Tagging, categorizing, or sectioning

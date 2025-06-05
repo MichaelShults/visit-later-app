@@ -14,7 +14,7 @@ On the 'About' page, a 'contact us' link incorrectly links to the current page, 
 Michael Shults
 
 ## Status
-Open
+Closed – Fixed on 05/06/2025
 
 ## Linked Test Case
 - TC05 - Non menu links work in "About" page

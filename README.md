@@ -5,6 +5,8 @@
 It aims to be convenient and user friendly.
 You will be able to save any type of link - videos, articles, etc.
 
+**This project is intentionally simple and imperfect to create realistic conditions for QA practice.**
+
 **Current app version:** v0.0.3
 
  ### Features that I may add over time:

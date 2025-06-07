@@ -15,7 +15,27 @@ def insert_into_db(url, title):
     cur = conn.cursor()
     cur.execute('INSERT INTO entries(url, title) VALUES (?, ?)', (url, title))
     conn.commit()
-    conn.close()   
+    conn.close()
+
+def delete_from_db(url = None, title = None):
+    if url or title:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        query = "DELETE FROM entries WHERE "
+        if url and title:
+            query += 'url = (?) AND title = (?)'
+            cur.execute(query, (url, title))
+        elif url and not title:
+            query += 'url = (?)'
+            cur.execute(query, (url,))
+        else:
+            query += 'title = (?)'
+            cur.execute(query, (title,))
+        conn.commit()
+        conn.close()
+        return True
+    else:
+        return False
 
 def get_entries_from_db():
     conn = sqlite3.connect(DATABASE)
@@ -63,9 +83,31 @@ def contact():
 def add_link():
     title = request.form.get("title")
     url = request.form.get("url")
-    insert_into_db(url, title)
+    if title and not title.isspace() and url and not url.isspace():
+        insert_into_db(url, title)
+    else:
+        print("Error, some fields are empty")
     return redirect("/")
 
+@app.route("/delete", methods = ["POST"])
+def delete_link():
+    title = request.form.get("title")
+    url = request.form.get("url")
+    print("url = '", url, "' ")
+    by_field = request.form.get("delete-by-field")
+    if by_field == "url":
+        title = None
+    elif by_field == "title":
+        url = None
+    if url and url.isspace():
+        url = "None"
+    if title and title.isspace():
+        title = "None"
+    if delete_from_db(url=url, title=title):
+        print("deletion operation successfull!")
+    else:
+        print("No arguments passed. Nothing deleted")
+    return redirect("/")
 
 ######################
  

@@ -25,5 +25,32 @@
 				<input type="submit" value="Add URL">
 			</form>
 		</div>
+		<hr>
+		<br><br>
+		<div>
+			<form action="{{url_for('delete_link')}}" method="post">
+				<label for="title">Title:</label>
+				<input type="text" id="title" name="title"><br><br>
+				<label for="url">URL:</label>
+				<input type="text" id="url" name="url"><br><br>
+				<input type="submit" value="Delete URL">
+				<fieldset>
+					<legend> Delete by fields:</legend>
+					<div>
+						<input type="radio" id="by-title" name="delete-by-field" value="title" checked />
+						<label for="">Title</label>
+					</div>
+					<div>
+						<input type="radio" id="by-url" name="delete-by-field" value="url" checked />
+						<label for="">URL</label>
+					</div>
+					<div>
+						<input type="radio" id="by-title-url" name="delete-by-field" value="title-url" checked />
+						<label for="">Title and URL</label>
+					</div>
+				</fieldset>
+
+			</form>
+		</div>
 	</body>
 </html>

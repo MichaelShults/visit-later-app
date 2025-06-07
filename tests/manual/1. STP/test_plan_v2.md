@@ -2,7 +2,7 @@
 # Project Name: Visit Later
 
 # Creation Date: 05/06/2025
-# Last Updated: 05/06/2025, v0.0.3 of the app
+# Last Updated: 07/06/2025, v0.0.4-pre of the app
 
 
 ## Introduction
@@ -12,11 +12,10 @@ This document is an updated and revamped version of 'test_plan_v1.md'. The motiv
 The goal is to have a solid test coverage of the website and the main app. Both major and minor bugs should be detected. The website should work smoothly, and the CRUD part of the app should function as expected from a typical user.
 
 ## Features that will be tested
-1. Basic page loading
+1. Static content and route ('about', 'contact', static content of 'index')
 2. Menu and internal links
 3. External links to other websites
-4. CRUD functionality of the main app, from the UI side
-5. API calls (/add, /delete, etc.)
+4. Add and remove items from the urls list using web forms
 
 ## Features that will not be tested
 1. Security
@@ -26,13 +25,12 @@ The goal is to have a solid test coverage of the website and the main app. Both 
 ## Test Types
 - Manual UI testing
 - Manual exploratory testing (UI)
-- Manual API testing with Postman
 - Focused regression before version tagging
 
 ## Tools and Environment
 - Windows 11 Desktop
 - Browsers: Chrome, Firefox, Opera, Edge - latest versions
-- Tools used: Postman, browser dev tools
+- Tools used: Browser dev tools
 
 ## Documents and Artifacts
 - Software Test Plan - this doc

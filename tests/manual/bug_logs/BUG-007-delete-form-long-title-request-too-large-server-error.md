@@ -4,7 +4,7 @@ BUG-007
 ## Bug found in exploratory testing session
 
 ## Bug Title
-Deleting by Title with a very long title, when title doesn't exist in db entry, causes 'Request Entity Too Large' error
+Deleting by Title with a very long title causes 'Request Entity Too Large' error.
 
 ## Summary
 Filling a very long string in the Title field for the delete form, selecting 'delete by title', then clicking the 'delete url' button (which submits the form) causes a 'Request entity too large error', instead of giving a clear feedback near the deletion form.

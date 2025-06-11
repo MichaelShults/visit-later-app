@@ -10,7 +10,7 @@
 		</nav>
 		<h1> Welcome to Visit Later </h1>
 		<p>
-			<b> Save any url to visit it later </b> <br>
+			<b> Save any link to visit it later </b> <br>
 			{% for entry in entries %}
 				{{entry[0]}} {{entry[1]}}
 				<br>
@@ -18,38 +18,43 @@
 		</p>
 		<div>
 			<form action="{{url_for('add_link')}}" method="post">
-				<label for="title">Title:</label>
-				<input type="text" id="title" name="title"><br><br>
-				<label for="url">URL:</label>
-				<input type="text" id="url" name="url"><br><br>
-				<input type="submit" value="Add URL">
+				{{add_item_form.hidden_tag()}}
+				{{add_item_form.title.label}}
+				{{add_item_form.title(size=20)}}<br><br>
+				{{add_item_form.url.label}}
+				{{add_item_form.url(size=20)}}<br><br>
+				<input type="submit" value="Add Link" name="add-link-button" />
 			</form>
 		</div>
 		<hr>
 		<br><br>
 		<div>
 			<form action="{{url_for('delete_link')}}" method="post">
-				<label for="title">Title:</label>
-				<input type="text" id="title" name="title"><br><br>
-				<label for="url">URL:</label>
-				<input type="text" id="url" name="url"><br><br>
-				<input type="submit" value="Delete URL">
+				{{delete_items_form.hidden_tag()}}
+				{% with messages = get_flashed_messages() %}
+					{{delete_items_form.title.label}}
+					{{delete_items_form.title(size=20)}}
+					{% if error_strings["missing_fields"]["title"] in messages %}
+						{{error_strings["missing_fields"]["title"]}}
+					{% endif %}
+					<br><br>
+					{{delete_items_form.url.label}}
+					{{delete_items_form.url(size=20)}}
+					{% if error_strings["missing_fields"]["URL"] in messages %}
+						{{error_strings["missing_fields"]["URL"]}}
+					{% endif %}
+					<br><br>
+				{% endwith %}
 				<fieldset>
-					<legend> Delete by fields:</legend>
-					<div>
-						<input type="radio" id="by-title" name="delete-by-field" value="title" checked />
-						<label for="">Title</label>
-					</div>
-					<div>
-						<input type="radio" id="by-url" name="delete-by-field" value="url" checked />
-						<label for="">URL</label>
-					</div>
-					<div>
-						<input type="radio" id="by-title-url" name="delete-by-field" value="title-url" checked />
-						<label for="">Title and URL</label>
-					</div>
+					<legend>Delete by field</legend>
+					<ul>
+					{% for subfield in delete_items_form.by_field %}
+						<li>{{ subfield }} {{subfield.label}}</li>
+					{% endfor %}
+					</ul>
 				</fieldset>
-
+				<br>
+				<input type="submit" value="Delete Link" name="delete-links-button" />
 			</form>
 		</div>
 	</body>

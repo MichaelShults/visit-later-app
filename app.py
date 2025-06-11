@@ -1,10 +1,16 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
+from forms.add_delete_forms import AddItemForm, DeleteItemsForm, MISSING_FIELD_STRINGS
+import os
 
 DATABASE = 'database/db.sqlite'
 
 
 app = Flask(__name__)
+
+
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 
 # Database
 #####################
@@ -18,24 +24,20 @@ def insert_into_db(url, title):
     conn.close()
 
 def delete_from_db(url = None, title = None):
-    if url or title:
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        query = "DELETE FROM entries WHERE "
-        if url and title:
-            query += 'url = (?) AND title = (?)'
-            cur.execute(query, (url, title))
-        elif url and not title:
-            query += 'url = (?)'
-            cur.execute(query, (url,))
-        else:
-            query += 'title = (?)'
-            cur.execute(query, (title,))
-        conn.commit()
-        conn.close()
-        return True
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    query = "DELETE FROM entries WHERE "
+    if url and title:
+        query += 'url = (?) AND title = (?)'
+        cur.execute(query, (url, title))
+    elif url and not title:
+        query += 'url = (?)'
+        cur.execute(query, (url,))
     else:
-        return False
+        query += 'title = (?)'
+        cur.execute(query, (title,))
+    conn.commit()
+    conn.close()
 
 def get_entries_from_db():
     conn = sqlite3.connect(DATABASE)
@@ -68,7 +70,15 @@ create_database()
 @app.route("/", methods = ["GET"])
 def index():
     entries = get_entries_from_db()
-    return render_template("index.html", entries = entries)
+    add_item_form = AddItemForm()
+    delete_items_form = DeleteItemsForm()
+    delete_items_form.by_field.default = 'title'
+    delete_items_form.process()
+    return render_template("index.html",
+                            entries = entries,
+                            add_item_form = add_item_form,
+                            delete_items_form = delete_items_form,
+                            error_strings={"missing_fields":MISSING_FIELD_STRINGS})
 
 
 @app.route("/about", methods = ["GET"])
@@ -81,32 +91,25 @@ def contact():
 
 @app.route("/add", methods=["POST"])
 def add_link():
-    title = request.form.get("title")
-    url = request.form.get("url")
-    if title and not title.isspace() and url and not url.isspace():
-        insert_into_db(url, title)
+    form = AddItemForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        url = form.url.data
+        insert_into_db(url=url, title=title)
     else:
-        print("Error, some fields are empty")
+        print("Form not valid - insertion.")
     return redirect("/")
 
 @app.route("/delete", methods = ["POST"])
 def delete_link():
-    title = request.form.get("title")
-    url = request.form.get("url")
-    print("url = '", url, "' ")
-    by_field = request.form.get("delete-by-field")
-    if by_field == "url":
-        title = None
-    elif by_field == "title":
-        url = None
-    if url and url.isspace():
-        url = "None"
-    if title and title.isspace():
-        title = "None"
-    if delete_from_db(url=url, title=title):
-        print("deletion operation successfull!")
+    form = DeleteItemsForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        url = form.url.data
+        by_field = form.by_field.data
+        delete_from_db(url=url, title=title)
     else:
-        print("No arguments passed. Nothing deleted")
+        print("Form not valid - deletion.")
     return redirect("/")
 
 ######################

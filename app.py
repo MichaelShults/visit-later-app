@@ -1,30 +1,38 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, redirect, g
 from forms.add_delete_forms import AddItemForm, DeleteItemsForm, MISSING_FIELD_STRINGS
 import os
 
 DATABASE = 'database/db.sqlite'
 
-
 app = Flask(__name__)
-
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-# Database
-#####################
+######## Database ########################
 
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
 
 def insert_into_db(url, title):
-    conn = sqlite3.connect(DATABASE)
+    conn = get_db()
     cur = conn.cursor()
     cur.execute('INSERT INTO entries(url, title) VALUES (?, ?)', (url, title))
     conn.commit()
     conn.close()
 
 def delete_from_db(url = None, title = None):
-    conn = sqlite3.connect(DATABASE)
+    conn = get_db()
     cur = conn.cursor()
     query = "DELETE FROM entries WHERE "
     if url and title:
@@ -40,19 +48,18 @@ def delete_from_db(url = None, title = None):
     conn.close()
 
 def get_entries_from_db():
-    conn = sqlite3.connect(DATABASE)
+    conn = get_db()
     cur = conn.cursor()
     cur.execute('SELECT url, title FROM entries')
     entries = cur.fetchall()
     conn.close()
-    return entries   
+    return entries
 
-
-def create_database():
-    conn = sqlite3.connect(DATABASE)
+def create_entries_table():
+    conn = get_db()
     cur = conn.cursor()
     cur.execute('''
-                Create TABLE IF NOT EXISTS entries (
+                CREATE TABLE IF NOT EXISTS entries (
                         id INTEGER PRIMARY KEY,
                         url TEXT,
                         title TEXT
@@ -61,11 +68,13 @@ def create_database():
     conn.commit()
     conn.close()
 
-create_database()
-#########################
+with app.app_context():
+    create_entries_table()
+
+########################################
 
 
-#### Routes
+######## Routes ########################
 
 @app.route("/", methods = ["GET"])
 def index():
@@ -77,7 +86,7 @@ def index():
     return render_template("index.html",
                             entries = entries,
                             add_item_form = add_item_form,
-                            delete_items_form = delete_items_form,
+                            delete_items_form =  delete_items_form,
                             error_strings={"missing_fields":MISSING_FIELD_STRINGS})
 
 
@@ -96,8 +105,6 @@ def add_link():
         title = form.title.data
         url = form.url.data
         insert_into_db(url=url, title=title)
-    else:
-        print("Form not valid - insertion.")
     return redirect("/")
 
 @app.route("/delete", methods = ["POST"])
@@ -108,11 +115,9 @@ def delete_link():
         url = form.url.data
         by_field = form.by_field.data
         delete_from_db(url=url, title=title)
-    else:
-        print("Form not valid - deletion.")
     return redirect("/")
 
-######################
+######################################
  
 
 if __name__ == "__main__":

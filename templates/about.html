@@ -2,32 +2,34 @@
 <html>
 	<head>
 		<title>About</title>
+        <link rel="stylesheet" href = "{{ url_for('static', filename='styles.css') }}">
 	</head>
 	<body>
-        <nav id = "main-menu">
-			<a href="{{url_for('index')}}"><div class = "main-menu-item"> Home </div></a>
- 			<a href="{{url_for('about')}}"><div class = "main-menu-item"> About </div></a> 
-		</nav>
-		<h1> About Us </h1>
-		<div>
-			<p> How often did you find yourself finding an article or a video you want to read,
-                but have other things to do?
-            </p>
-            <p>
-                You might bookmark the page, send it yourself over email or a messaging app, or use the "Reading List"
-                some browser have.
-            </p>
-            <p>
-                But what if you had a self-contained, reliable, and feature rich app that takes care of everything
-                for you, and makes the whole experience as smooth as butter?
-            </p>
-            <p>
-                That's where Visit Later comes into the picture. Try it out!
-            </p>
-            <p>
-                PS: We always are welcome of any feedback. If you encounter any problems or have any suggestions for us,
-                don't hesitate to <a href = "{{url_for('contact')}}">contact us</a>.
-            </p>
-		</div>
+        <div id="content">
+			<nav id = "main-menu">
+				<a href="{{url_for('index')}}"><div class = "main-menu-item"> Home </div></a>
+				<a href="{{url_for('about')}}"><div class = "main-menu-item"> About </div></a> 
+			</nav>
+            <h1> About Us </h1>
+            <div>
+                <p> How often do you come across an article, blog post or video you want to check out immediately,
+                    but you realize you have some more urgent things to do?
+                </p>
+                <p>
+                    You might bookmark the page, email or WhatsApp it to yourself or add it to the "Reading List" 
+                    some browsers have.
+                </p>
+                <p>
+                    But what if there were a simple and reliable app just for that?
+                </p>
+                <p>
+                    That's where Visit Later comes in. Try it out!
+                </p>
+                <p>
+                    P.S. We always welcome feedback. If you encounter any problems or have any suggestions for us,
+                    don't hesitate to <a href = "{{url_for('contact')}}">contact us</a>.
+                </p>
+            </div>
+        </div>
 	</body>
 </html>

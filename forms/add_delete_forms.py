@@ -11,14 +11,14 @@ MISSING_FIELD_STRINGS = {"URL": URL_MISSING_ERROR_STRING, "title": TITLE_MISSING
 
 
 class AddItemForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired(), Length(max=100)])
-    url = StringField('url', validators=[DataRequired(), Length(max=100)])
+    title = StringField('title', name="title-add", id="title-add", validators=[DataRequired(), Length(max=100)])
+    url = StringField('url',name="url-add", id="url-add", validators=[DataRequired(), Length(max=100)])
     submit = SubmitField('add-link-button')
 
 
 class DeleteItemsForm(FlaskForm):
-    title = StringField('title', validators=[Length(max=100)])
-    url = StringField('url', validators=[Length(max=100)])
+    title = StringField('title',name="title-delete", id="title-delete", validators=[Length(max=100)])
+    url = StringField('url', name="url-delete", id="url-delete", validators=[Length(max=100)])
     by_field = RadioField('delete-by-field', choices=[('title', 'title'), ('url', 'url'),
                                                        ('title-url', 'Title and URL')], validators=[InputRequired()])
     submit = SubmitField('delete-link-button')

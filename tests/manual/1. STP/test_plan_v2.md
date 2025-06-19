@@ -2,7 +2,7 @@
 # Project Name: Visit Later
 
 # Creation Date: 05/06/2025
-# Last Updated: 07/06/2025, v0.0.4-pre of the app
+# Last Updated: 19/06/2025, v0.0.5-pre of the app
 
 
 ## Introduction
@@ -15,7 +15,7 @@ The goal is to have a solid test coverage of the website and the main app. Both 
 1. Static content and route ('about', 'contact', static content of 'index')
 2. Menu and internal links
 3. External links to other websites
-4. Add and remove items from the urls list using web forms
+4. View links list, and add and remove items from it using web forms
 
 ## Features that will not be tested
 1. Security

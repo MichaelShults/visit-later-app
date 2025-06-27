@@ -1,6 +1,11 @@
+
+**NOTE**: This file is out of sync with 'visit_later_spec.md'. It will be revised and aligned with that spec before tests are executed.
+
+
 STD Version: 1.0
 Author: Michael Shults
 Date: 17/06/2025
+Last Updated: 21/06/2025
 
 ## Introduction
 This STD is about testing the v0.0.5-pre version of our app for regressions. I will also be doing an exploratory testing session, mainly for usability and UI/UX. 
@@ -9,12 +14,12 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5.md
 Exploratory testing is documented in tests/manual/Exploratory/session-002-usability_UI_UX_v0.0.5.md
 
 ## Features that will be tested (STP/test_plan_v2.md)
-Static content and route ('about', 'contact', static content of 'index') - #1 in STP
+Static content of 'index' page - #1 in STP
 View links list, and add and remove items from it using web forms - #4 in STP
 
 
 ## Static test data for v0.0.5
-- **Populated Database**
+- **Databases**
     - **TestDatabase:** `database/db.sqlite` 
     - **UnmodifiedDatabase:** `test_databases_read_only/db.sqlite`  
         - **Database Schema:** `(id, URL, Title)`
@@ -30,7 +35,7 @@ Alternatively: You can run scripts/reset_test_database.ps1, which does steps 1 a
 
 ## Notes on UI changes:
 - For clarity, the 'Add URL' and 'Delete URL' buttons were renamed to 'Add Link' and 'Delete Link' respectively.
-- Due to added styling with css, the UI in now centered and aligned, and some design elements are applied. However the content and functionality isn't supposed to be any different.
+- Due to added styling with css, the UI is now centered and aligned, and some design elements are applied. However the content and functionality aren't supposed to be any different.
 
 ## Test Cases - Regression
 **TC01:**
@@ -41,22 +46,24 @@ Alternatively: You can run scripts/reset_test_database.ps1, which does steps 1 a
 - **Steps:** 
     1. Open `localhost:5000` in the browser
 - **Expected Result:**
-    1. Page loads with `status 200` and no error in console
+    1. Page loads with `status 200`
     2. Page contains a main menu with `Home` and `About` links
     3. The following elements are visible:
         - **Heading**: "Welcome to Visit Later"
         - **Text**: "Save any url to visit it later"
         - **Populated Database** All rows and columns
         - **Add item form:** 
-            1. Textbox with a 'title' label
-            2. Textbox with a 'URL' label
-            3. 'Add URL' button
+            1. "Add Link" form title
+            2. Textbox with a 'Title' label
+            3. Textbox with a 'URL' label
+            4. 'Add Link' button
         - **Delete item form:** 
-            1. Textbox with a 'title' label
-            2. Textbox with a 'URL' label
-            3. 'Delete Link' button
-            4. Radio input: 
-                1. Legend: 'Delete by fields:'
+            1. "Delete Link" form title
+            2. Textbox with a 'Title' label
+            3. Textbox with a 'URL' label
+            4. 'Delete Link' button
+            5. Radio input: 
+                1. Legend: 'Delete by field:'
                 2. 3 radio options with the labels ('Title', 'URL', 'Title and URL')
 
 ---
@@ -69,7 +76,7 @@ Alternatively: You can run scripts/reset_test_database.ps1, which does steps 1 a
     1. Fill in URL = "www.microsoft.com", title = "microsoft"
     2. Click the 'Add Link' button
 - **Expected Result:**
-    1. Page reloads with `status 200` with no error in console
+    1. Page reloads with `status 200`
     2. New entry is now visible
     3. No other elements (other url table entries, menu, text content, forms) change
 
@@ -239,7 +246,7 @@ Alternatively: You can run scripts/reset_test_database.ps1, which does steps 1 a
 - **STP Features:** 4
 - **Priority**: High
 - **Steps:**
-    1. Select 'Title and URL' in the radio box labeled 'Delete by fields:'
+    1. Select 'Title and URL' in the radio box labeled 'Delete by field:'
     2. Fill in 'google' in the title field of deletion form
     3. Click the 'Delete Link' button to submit the form
 
@@ -254,7 +261,7 @@ Alternatively: You can run scripts/reset_test_database.ps1, which does steps 1 a
 - **STP Features:** 4
 - **Priority**: High
 - **Steps:**
-    1. Select 'Title and URL' in the radio box labeled 'Delete by fields:'
+    1. Select 'Title and URL' in the radio box labeled 'Delete by field:'
     2. Fill in 'www.google.com' in the URL field of deletion form
     3. Click the 'Delete Link' button to submit the form
 - **Expected Result:**
@@ -268,14 +275,14 @@ Alternatively: You can run scripts/reset_test_database.ps1, which does steps 1 a
 - **STP Features:** 4 
 - **Priority**: Low  
 - **Steps:** 
-    1. Copy all the text from the file "tests\manual\test_data\very_long_string.txt"
+    1. Copy all the text from the file "tests/manual/test_data/very_long_string.txt"
     2. Paste it into the 'Title' field of the "Add Link" form.
     3. Fill in 'www.yahoo.com' into the 'URL' field of the "Add Link" form
     4. Click the "Add Link" button.
     5. Reset database, go to `localhost:5000`
-    6. Copy all the text from the file "tests\manual\test_data\very_long_string.txt"
+    6. Copy all the text from the file "tests/manual/test_data/very_long_string.txt"
     7. Paste it into the 'URL' field of the "Add Link" form.
-    8. Fill in 'yahoo' into the 'URL' field of the "Add Link" form
+    8. Fill in 'yahoo' into the 'Title' field of the "Add Link" form
     9. Click the "Add Link" button.
 - **Expected Result:**
     1. Steps 1-4: A new entry is added to the saved links table, with title being the first 100 character of "very_long_string.txt" file contents, and the URL being 'www.yahoo.com' 
@@ -289,12 +296,12 @@ Alternatively: You can run scripts/reset_test_database.ps1, which does steps 1 a
 - **STP Features:** 4 
 - **Priority**: Low  
 - **Steps:** 
-    1. Copy all the text from the file "tests\manual\test_data\very_long_string.txt"
+    1. Copy all the text from the file "tests/manual/test_data/very_long_string.txt"
     2. Paste it into the 'Title' field of the "Delete Link" form
     3. Click the radio button labeled 'Title' under 'Delete by field'
     4. Click the "Delete Link" button.
     5. Reset database, go to `localhost:5000`
-    6. Copy all the text from the file "tests\manual\test_data\very_long_string.txt"
+    6. Copy all the text from the file "tests/manual/test_data/very_long_string.txt"
     7. Paste it into the 'URL' field of the "Delete Link" form
     8. Click the radio button labeled 'URL' under 'Delete by field'
     9. Click the "Delete Link" button.

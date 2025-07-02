@@ -3,7 +3,7 @@
  ## What is this project about?
 - **Visit Later** is a simple Flask web app for saving and deleting links to visit later. The project is intentionally simple and imperfect to create realistic conditions for QA practice and bug reporting.
 
-**Current app version:** v0.0.4
+**Current app version:** v0.0.5-pre
 
 ## Testing Artifacts
 - Test plans (STP)

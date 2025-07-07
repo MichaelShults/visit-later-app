@@ -1,7 +1,7 @@
-STD Version: 1.1  
+STD Version: 1.2  
 Author: Michael Shults  
 Date: 17/06/2025  
-Last Updated: 02/07/2025  
+Last Updated: 03/07/2025  
 
 ## Introduction
 This STD is about testing v0.0.5-pre of our app.  
@@ -23,6 +23,14 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
         - **Database Schema:** `(id, url, title)`
             - id (autoincrement PK) is present but not visible in UI or used in tests   
         - **Rows:** (url = 'www.google.com', title = 'google'), (url = 'www.wikipedia.com', title = 'wikipedia')
+- **Strings for TC19, TC20:**
+    - Can be generated with the Python interpreter by typing the command: `NUMBER_OF_CHARACTERS * 'a'` and then hitting enter.
+        - 300 character string = `300 * 'a'`
+        - 500 character string = `500 * 'a'`
+        - 301 character string = `301 * 'a'`
+        - 501 character string = `501 * 'a'`
+
+
 
 
 
@@ -30,14 +38,14 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 - For clarity, the 'Add URL' and 'Delete URL' buttons were renamed to 'Add Link' and 'Delete Link' respectively.
 - Due to added styling with CSS, the UI is now centered and aligned, and some design elements are applied. However the content and functionality aren't supposed to be any different.
 
-## Test Cases - Regression (with some modifications to match new spec)
-**TC01:**
-- **Title:** Load index page
+## Page Loading
+**TC01 - Load index page**
 - **STP Features:** 1, 4
 - **Based on:** TC01 from `index_about_STD_v1.0.md`
 - **Priority:** High
 - **Steps:** 
-    1. Open `localhost:5000` in the browser
+    1. Run 'scripts/reset_test_database.ps1' to reset test database
+    2. Open `localhost:5000` in the browser
 - **Expected Result:**
     1. Page loads
     2. Page contains a main menu with `Home` and `About` links
@@ -69,14 +77,18 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 3. Fill in the provided 'Title' and 'URL' values in the 'Add Link' form.
 4. Click the 'Add Link' button and observe what happens next.
 
-|TC# |Title  |URL            |Page Reloads?|Entry added|Missing Title Error?|Missing URL Error?|Priority|
-|----|-------|---------------|-------------|-----------|--------------------|------------------|--------|
-|TC02|'yahoo'|'www.yahoo.com'|      Yes    |   Yes     |          No        |         No       | High   |
-|TC03|'yahoo'|empty          |      No     |    No     |          No        |         Yes      | High   |
-|TC04|empty  |'www.yahoo.com'|      No     |    No     |          Yes       |         No       | High   |
-|TC05|empty  |empty          |      No     |    No     |          Yes       |         Yes      | High   |
+|TC# |Title  |URL            |Page Reloads?|Entry added?|Missing Title Error?|Missing URL Error?|Priority|
+|----|-------|---------------|-------------|------------|--------------------|------------------|--------|
+|TC02|'yahoo'|'www.yahoo.com'|      Yes    |    Yes     |          No        |         No       | High   |
+|TC03|'yahoo'|empty          |      No     |    No      |          No        |         Yes      | High   |
+|TC04|empty  |'www.yahoo.com'|      No     |    No      |          Yes       |         No       | High   |
+|TC05|empty  |empty          |      No     |    No      |          Yes       |         Yes      | High   |
 
-
+#### Column Names Legend:
+- Page Reloads? = page reloads after clicking the 'Add Link' button
+- Entry added? = A new entry with the 'Title' and 'URL' provided in the test case is now shown in the links table
+- Missing Title Error? = A browser native field validation popup is shown just below the 'Title' field, with the message 'Title cannot be empty'
+- Missing URL Error? = A browser native field validation popup is shown just below the 'URL' field, with the message 'URL cannot be empty'
 
 
 ## Delete Link - by Title or by URL:
@@ -105,6 +117,15 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 | TC09|Yes          |Yes:('google', 'www.google.com')|No                  |No                | High   |
 | TC10|Yes          |No                              |No                  |No                | Medium |
 | TC11|No           |No                              |No                  |Yes               | Medium |
+
+
+#### Column Names Legend:
+- Title exists? = a row with a title column that equals to the provided Title exists in `TestDatabase`
+- URL exists? = a row with a url column that equals to the provided URL exists in `TestDatabase`
+- Page Reloads? = page reloads after clicking the 'Delete Link' button
+- Entries Deleted? = All matching entries are deleted and are no longer shown in the links table
+- Missing Title Error? = A browser native field validation popup is shown just below the 'Title' field, with the message 'Title cannot be empty'
+- Missing URL Error? = A browser native field validation popup is shown just below the 'URL' field, with the message 'URL cannot be empty'
 
 
 ## Delete Link - by Title and URL:
@@ -139,10 +160,17 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 | TC18|No           |No                              |Yes                 |Yes               | High   |
 
 
+#### Column Names Legend:
+- Title exists? = a row with a title column that equals to the provided Title exists in `TestDatabase`
+- URL exists? = a row with a url column that equals to the provided URL exists in `TestDatabase`
+- Page Reloads? = page reloads after clicking the 'Delete Link' button
+- Entries Deleted? = All matching entries are deleted and are no longer shown in the links table
+- Missing Title Error? = A browser native field validation popup is shown just below the 'Title' field, with the message 'Title cannot be empty'
+- Missing URL Error? = A browser native field validation popup is shown just below the 'URL' field, with the message 'URL cannot be empty'
+
 
 ## Input Fields Character Limit
-**TC19:**
-- **Title:** Input Fields Character Limit - Within Range
+**TC19 - Input Fields Character Limit - Within Range**
 - **STP Features:** 4
 - **Priority:** Medium
 ### Steps
@@ -159,8 +187,7 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 ---
 
 
-**TC20:**
-- **Title:** Input Fields Character Limit - Outside Range
+**TC20 - Input Fields Character Limit - Outside Range**
 - **STP Features:** 4
 - **Priority:** Medium
 ### Steps

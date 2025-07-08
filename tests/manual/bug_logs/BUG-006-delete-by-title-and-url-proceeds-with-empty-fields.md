@@ -16,7 +16,7 @@ When "Delete by Fields" is set to "Title and URL", and only one of the fields is
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/06/2025
 
 ## Linked Exploratory Session
 - 'session-001-delete-edge-cases.md'

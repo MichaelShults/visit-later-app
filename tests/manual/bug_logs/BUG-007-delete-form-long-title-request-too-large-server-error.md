@@ -16,7 +16,7 @@ Filling a very long string in the Title field for the delete form, selecting 'de
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/06/2025
 
 ## Linked Exploratory Session
 - 'session-001-delete-edge-cases.md'

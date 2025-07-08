@@ -14,7 +14,7 @@ Page doesn't display a message to the user indicating 'missing title' near the i
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/06/2025
 
 ## Linked Test Case
 - TC04 - Add item - URL and no title

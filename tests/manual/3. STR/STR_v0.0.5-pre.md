@@ -1,7 +1,7 @@
 # Software Test Report v1  
 **Tested App Version:** 0.0.5-pre  
 **Author:** Michael Shults    
-**Date:** 03/07/2025
+**Date:** 03/07/2025  
 **Last Updated:** 07/07/2025  
 **Based on STD:** STD_v0.0.5-pre.md
 

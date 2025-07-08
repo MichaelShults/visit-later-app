@@ -14,7 +14,7 @@ Page doesn't display a message to the user indicating 'missing URL and title' ne
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/06/2025
 
 ## Linked Test Case
 - TC05 - Add item - no URL and no title

@@ -64,7 +64,7 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
             3. Textbox with a 'URL' label just above it
             4. 'Delete Link' button
             5. Radio input: 
-                1. Legend: 'Delete by Field:'
+                1. Legend: 'Delete by Field'
                 2. 3 radio options with the labels ('Title', 'URL', 'Title and URL')
 
 ---

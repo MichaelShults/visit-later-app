@@ -44,6 +44,8 @@ Open
 | TC16|"Title cannot be empty"|N/A                  |
 | TC17|N/A                    |"URL cannot be empty"|
 | TC18|"Title cannot be empty"|"URL cannot be empty"|
+
+
 All messages are rendered with the native browser validation popup/tooltip.  
 For TC18 the messages are displayed simultaneously.
 
@@ -55,7 +57,9 @@ For TC18 the messages are displayed simultaneously.
 | TC16|"Please fill in title."|N/A                  |
 | TC17|N/A                    |"Please fill in URL."|
 | TC18|"Please fill in title."|"Please fill in URL."|
-All messages are shown below the field or fields as plain text. 
+
+
+All messages are shown below the field or fields as plain text.   
 For TC18 the messages are displayed simultaneously.
 
 ## Environment

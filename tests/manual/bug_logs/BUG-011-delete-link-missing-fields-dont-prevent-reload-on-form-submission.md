@@ -36,7 +36,7 @@ Open
 | TC17|Title and URL  |'google'|empty           |
 | TC18|Title and URL  |empty   |empty           |
 
-### Expected Results
+## Expected Results
 Page doesn't reload in all the test cases above, and no entry is deleted from the links table. Validation error messages shown.
 
 ## Actual Results

@@ -14,7 +14,7 @@ For all textbox fields in both the 'Add Link' and 'Delete Link' form, the max ch
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/07/2025
 
 ## Linked Test Cases
 - TC19, TC20

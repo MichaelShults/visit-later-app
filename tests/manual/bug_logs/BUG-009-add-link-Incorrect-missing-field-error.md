@@ -14,7 +14,7 @@ In the 'Add Link' form, if one or both of the inputs are empty (both required), 
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/07/2025
 
 ## Linked Test Cases
 - TC03, TC04, TC05 - 'Add Link' form test cases

@@ -14,7 +14,8 @@ In the delete link form, the error messages for input fields are plain text and 
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/07/2025
+Note: simultaneously displaying of tooltips/popups for more than one field is no longer needed in the updated spec (v1.1).
 
 ## Linked Test Cases
 - TC08, TC11, TC16, TC17, TC18 - 'Delete Link' from test cases

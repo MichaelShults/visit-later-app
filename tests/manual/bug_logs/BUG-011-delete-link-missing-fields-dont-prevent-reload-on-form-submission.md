@@ -14,7 +14,7 @@ The 'Delete by Field' option required the chosen text inputs to be non empty bef
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/07/2025
 
 ## Linked Test Cases
 - TC08, TC11, TC16, TC17, TC18 - 'Delete Link' from test cases

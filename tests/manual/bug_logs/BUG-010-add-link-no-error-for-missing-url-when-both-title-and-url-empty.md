@@ -14,7 +14,7 @@ In the 'Add Link' form, if both 'Title' and 'URL' fields are empty, the spec (`s
 Michael Shults
 
 ## Status
-Open
+Closed - 11/07/2025 - no longer considered a bug, due to spec change from v1.0 to v1.1. There is a technical limitations on displaying browser native validation tooltips / popups for more than one field at the same time.
 
 ## Linked Test Cases
 - TC05 - Add Link, Title empty, URL empty

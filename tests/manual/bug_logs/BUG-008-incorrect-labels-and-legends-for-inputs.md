@@ -14,7 +14,7 @@ The input labels and the radio fieldset legend in the 'Add Link' and 'Delete Lin
 Michael Shults
 
 ## Status
-Open
+Closed - fixed 11/07/2025
 
 ## Linked Test Case
 - TC01 - Load index page

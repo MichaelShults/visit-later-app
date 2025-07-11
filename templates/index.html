@@ -23,8 +23,8 @@
 			<br>
 			<hr>
 			<h3> Add Link </h3>
-			<div id="add-link-form">
-				<form action="{{url_for('add_link')}}" method="post">
+			<div id="add-link-form-div">
+				<form id = "add-link-form" action="{{url_for('add_link')}}" method="post">
 					{{add_item_form.hidden_tag()}}
 					{{add_item_form.title.label}}
 					<br>
@@ -32,35 +32,25 @@
 					{{add_item_form.url.label}}
 					<br>
 					{{add_item_form.url(size=20)}}<br><br>
-					<input type="submit" value="Add Link" name="add-link-button" />
+					<input type="submit" value="Add Link" name="add-link-button" id="add-link-button" />
 				</form>
 			</div>
 			<hr>
 			<br>
 			<h3> Delete Link </h3>
-			<div id="delete-link-form">
-				<form action="{{url_for('delete_link')}}" method="post">
+			<div id="delete-link-form-div">
+				<form  id = "delete-link-form" action="{{url_for('delete_link')}}" method="post">
 					{{delete_items_form.hidden_tag()}}
-					{% with messages = get_flashed_messages() %}
-						{{delete_items_form.title.label}}
-						<br>
-						{{delete_items_form.title(size=20)}}
-						<br>
-						{% if error_strings["missing_fields"]["title"] in messages %}
-							{{error_strings["missing_fields"]["title"]}}
-						{% endif %}
-						<br>
-						{{delete_items_form.url.label}}
-						<br>
-						{{delete_items_form.url(size=20)}}
-						<br>
-						{% if error_strings["missing_fields"]["URL"] in messages %}
-							{{error_strings["missing_fields"]["URL"]}}
-						{% endif %}
-						<br><br>
-					{% endwith %}
+					{{delete_items_form.title.label}}
+					<br>
+					{{delete_items_form.title(size=20)}}
+					<br><br>
+					{{delete_items_form.url.label}}
+					<br>
+					{{delete_items_form.url(size=20)}}
+					<br><br>
 					<fieldset id = "radio-delete-fieldset">
-						<legend>Delete by field</legend>
+						<legend>Delete by Field</legend>
 						<ul id="radio-choice-list">
 						{% for subfield in delete_items_form.by_field %}
 							<li class="radio-choice">{{ subfield }} {{subfield.label}}</li>
@@ -68,9 +58,86 @@
 						</ul>
 					</fieldset>
 					<br>
-					<input type="submit" value="Delete Link" name="delete-links-button" />
+					<input type="submit" value="Delete Link" name="delete-links-button" id="delete-links-button"  />
 				</form>
 			</div>
 		</div>
+	<script>
+		const missing_title_error = "Title cannot be empty";
+		const missing_url_error = "URL cannot be empty";
+
+		const add_link_form = document.getElementById("add-link-form");
+		const add_link_title = document.getElementById("title-add");
+		const add_link_url = document.getElementById("url-add");
+		const add_link_button = document.getElementById("add-link-button");
+		const by_field = document.querySelectorAll("input[name='by_field']");
+		const delete_link_form = document.getElementById("delete-link-form");
+		const delete_link_title = document.getElementById("title-delete");
+		const delete_link_url = document.getElementById("url-delete");
+		const delete_link_button = document.getElementById("delete-links-button");
+
+
+		add_link_form.addEventListener('submit', function (e) {
+			
+			if (add_link_title.value.trim() == ''){
+				add_link_title.setCustomValidity(missing_title_error);
+				
+			}
+			else {
+				add_link_title.setCustomValidity("");
+				
+			}
+			if (add_link_url.value.trim() == ''){
+				add_link_url.setCustomValidity(missing_url_error);
+				
+			}
+			else {
+				add_link_url.setCustomValidity("");
+			}
+		
+			if (!add_link_form.checkValidity()) {
+				e.preventDefault();
+				add_link_url.reportValidity();
+				add_link_title.reportValidity();
+			}
+		});
+
+		add_link_url.addEventListener('input', () => {add_link_url.setCustomValidity("");});
+		add_link_title.addEventListener('input', () => {add_link_title.setCustomValidity("");});
+
+		delete_link_form.addEventListener('submit', function (e) {
+			by_field_selected = document.querySelector("input[name='by_field']:checked").value;
+			if ((by_field_selected == 'title' || by_field_selected =='title-url') && delete_link_title.value.trim() == ''){
+				delete_link_title.setCustomValidity(missing_title_error);
+			}
+			else {
+				delete_link_title.setCustomValidity("");
+			}
+			if ((by_field_selected == 'url' || by_field_selected =='title-url')&& delete_link_url.value.trim() == ''){
+				delete_link_url.setCustomValidity(missing_url_error);
+				
+			}
+			else {
+				delete_link_url.setCustomValidity("");
+			}
+			if (!delete_link_form.checkValidity()) {
+				e.preventDefault();
+				delete_link_url.reportValidity();
+				delete_link_title.reportValidity();
+			}
+		});
+
+		delete_link_url.addEventListener('input', () => {delete_link_url.setCustomValidity("");});
+		delete_link_title.addEventListener('input', () => {delete_link_title.setCustomValidity("");});
+		by_field.forEach(radio => {
+			radio.addEventListener('change', function() {
+					delete_link_url.setCustomValidity("");
+					delete_link_title.setCustomValidity("");
+			});
+		});
+
+
+
+	</script>
 	</body>
 </html>

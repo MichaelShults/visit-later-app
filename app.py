@@ -1,6 +1,6 @@
 import sqlite3
 from flask import Flask, render_template, redirect, g
-from forms.add_delete_forms import AddItemForm, DeleteItemsForm, MISSING_FIELD_STRINGS
+from forms.add_delete_forms import AddItemForm, DeleteItemsForm
 import os
 
 DATABASE = 'database/db.sqlite'
@@ -86,8 +86,7 @@ def index():
     return render_template("index.html",
                             entries = entries,
                             add_item_form = add_item_form,
-                            delete_items_form =  delete_items_form,
-                            error_strings={"missing_fields":MISSING_FIELD_STRINGS})
+                            delete_items_form =  delete_items_form)
 
 
 @app.route("/about", methods = ["GET"])

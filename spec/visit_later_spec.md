@@ -1,9 +1,10 @@
 # Visit Later App - Functional Specification
 
 **Author**: Michael Shults
-**Date**: 21/06/2025  
+**Date**: 21/06/2025
+**Last Updated**: 11/07/2025
 **App Version**: 0.0.5  
-**Spec Version**: 1.0
+**Spec Version**: 1.1
 
 **Context**: Written after the `v0.0.5-pre` version tag was pushed to GitHub. This document reflects desired specification, and currently not all functionality and UI is implemented according to this spec.
 Purpose: Establish ground truth for functionality and UI, to bring clarity to the QA process.
@@ -105,6 +106,7 @@ When a menu button is clicked:
             - "URL cannot be empty" for the URL
             - "Title cannot be empty" for the title
         - Use the browser native validation popups to show the message. They can be triggered by the javascript `input.reportValidity()` method.
+            - Since browser allows only one popup at a time, if both fields are empty or are a whitespace sequence, a popup will be displayed just for the title field.   
 
 ### Delete Link Form:
 - Validation is only fully enforced on the frontend 
@@ -136,10 +138,10 @@ When a menu button is clicked:
          - should cause the following message to display:
             - "URL cannot be empty" for the URL (If deletion is by URL)
             - "Title cannot be empty" for the title (If deletion is by Title)
-            - "URL cannot be empty" and "Title cannot be empty" (If deletion is by Title and URL)
+            - "URL cannot be empty" and "Title cannot be empty" (If deletion is by 'Title and URL')
         - Use the browser native validation popups to show the message. They can be triggered by the javascript `input.reportValidity()` method.
             - Each message will be displayed below its respective field.
-            - If both fields are missing, and the deletion is by Title and URL, both messages are displayed simultaneously, below their respective field.    
+            - Since browser allows only one popup at a time, if deletion is by 'Title and URL' both fields are empty or are a whitespace sequence, a popup will be displayed just for the title field.   
 
     
 

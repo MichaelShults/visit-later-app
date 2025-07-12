@@ -1,17 +1,16 @@
 <form  id = "delete-link-form" action="{{url_for('delete_link')}}" method="post">
     {{delete_items_form.hidden_tag()}}
-    {{delete_items_form.title.label}}<br>
-    {{delete_items_form.title(size=20)}}<br><br>
-    {{delete_items_form.url.label}}<br>
+    {{delete_items_form.title.label}}
+    {{delete_items_form.title(size=20)}}<br>
+    {{delete_items_form.url.label}}
     {{delete_items_form.url(size=20)}}<br><br>
     <fieldset id = "radio-delete-fieldset">
-        <legend>Delete by Field</legend>
+        <legend id ="delete-by-field-legend">Delete by Field</legend>
         <ul id="radio-choice-list">
         {% for subfield in delete_items_form.by_field %}
             <li class="radio-choice">{{ subfield }} {{subfield.label}}</li>
         {% endfor %}
         </ul>
     </fieldset>
-    <br>
     <input type="submit" value="Delete Link" name="delete-links-button" id="delete-links-button"  />
 </form>

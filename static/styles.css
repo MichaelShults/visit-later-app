@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 html{
     margin:0;
     padding: 0;
     height: 100vh;
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3em;
 }
 
 body{
@@ -22,12 +27,18 @@ body{
     padding-bottom: 2em;
 }
 
+p{
+    font-size: 1.3em;
+}
+
 #main-menu {
     display: flex;
     justify-content: center;
     align-content: center;
     padding-bottom: 0;
+    font-size: 1.4em;
 }
+
 
 .main-menu-item {
     padding-top: 0.5em;
@@ -55,15 +66,24 @@ body{
 }
 
 #links-table {
-    width: 50%;
+    table-layout: fixed;
+    width: 50vw;
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
+    padding: 0;
+    font-size: 1.3em;
+    box-shadow: 0.05em 0.05em black;
+}
+
+#links-table tr {
+    width: 25vw;
 }
 
 
 .table-cell {
     border: 1px solid black;
+     word-break: break-all;
 }
 
 .table-row {
@@ -71,9 +91,20 @@ body{
     border-bottom: 2px solid black;
 }
 
-#links-table {
-    list-style-type: none;
-    padding: 0;
+#table-header {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    font-size: 1.4em;
+    background-color: rgb(162, 216, 255);
+}
+
+#url-table-header {
+    border-left:2px solid black;
+    border-right:2px solid black;
+}
+
+#title-table-header {
+    border-left:2px solid black;
 }
 
 #radio-delete-fieldset {
@@ -86,7 +117,85 @@ body{
     text-align: left;
 }
 
-h3 {
-    margin-bottom: 1em;
+h1 {
+    padding-bottom: 0;
+    font-weight: 600;
 }
 
+
+h3 {
+    margin-bottom: 0.4em;
+    font-size:1.8em;
+    font-weight: 600;
+    text-decoration: underline black;
+}
+
+#links-table-description {
+    font-size:1.4em;
+    font-weight: 600;
+    padding-bottom:0;
+    margin-bottom:0.3em;
+    text-decoration: underline black;
+}
+
+#delete-link-form-div, #add-link-form-div {
+    font-size:1.3em;
+}
+
+input[type=submit] {
+    font-size:1em;
+    font-family: "Crimson Text", serif;
+}
+
+#delete-by-field-legend {
+    font-size:1.1em;
+    font-family: "Crimson Text", serif;
+    text-decoration: underline black;
+}
+
+label {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: block;
+    font-size: 1.2em;
+}
+
+input[type=text] {
+    margin: 0.2em;
+    margin-top: 0;
+    line-height: 1.2;
+    font-size: 1.1em;
+    padding:0;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    border-width: 0.07em;
+}
+
+.radio-choice label {
+    display: inline;
+    font-size: 1em;
+}
+
+#delete-links-button, #add-link-button {
+    margin-top: 1em;
+    padding: 0.2em;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0.12em 0.12em black;
+}
+
+#delete-links-button:hover, #add-link-button:hover {
+    box-shadow: 0.12em 0.12em black;
+}
+
+#delete-links-button:active, #add-link-button:active {
+    margin-top: 1em;
+    padding: 0.2em;
+    box-shadow: none;
+    transform: translate(0.12em, 0.12em);
+}
+
+input[type=radio] {
+    height:1.2em;
+    width:1.2em;
+}

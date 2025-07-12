@@ -1,5 +1,9 @@
 <table id="links-table">
-    <b> Save any link to visit it later </b> <br>
+    <b id="links-table-description"> Save any link to visit it later </b> <br>
+    <tr id = "table-header">
+        <td id ="title-table-header"> Title </td>
+        <td id = "url-table-header"> URL </td>
+    </tr>
     {% for link in entries %}
     <tr id = "table-row-{{loop.index0}}" class="table-row">
         <td id="title-{{loop.index0}}" class="table-cell">{{link[1]}}</td>

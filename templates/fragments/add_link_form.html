@@ -1,8 +1,10 @@
 <form id = "add-link-form" action="{{url_for('add_link')}}" method="post">
         {{add_item_form.hidden_tag()}}
-        {{add_item_form.title.label}}<br>
-        {{add_item_form.title(size=20)}}<br><br>
-        {{add_item_form.url.label}}<br>
-        {{add_item_form.url(size=20)}}<br><br>
+        {{add_item_form.title.label}}
+        {{add_item_form.title(size=20)}}<br>
+        {{add_item_form.url.label}}
+        {{add_item_form.url(size=20)}}<br>
         <input type="submit" value="Add Link" name="add-link-button" id="add-link-button" />
 </form>
+<br>
+

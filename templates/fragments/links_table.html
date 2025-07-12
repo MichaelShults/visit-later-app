@@ -1,0 +1,9 @@
+<table id="links-table">
+    <b> Save any link to visit it later </b> <br>
+    {% for link in entries %}
+    <tr id = "table-row-{{loop.index0}}" class="table-row">
+        <td id="title-{{loop.index0}}" class="table-cell">{{link[1]}}</td>
+        <td id="url-{{loop.index0}}" class="table-cell">{{link[0]}}</td>
+    </tr>
+    {% endfor %}
+</table>

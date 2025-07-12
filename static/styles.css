@@ -43,6 +43,13 @@ body{
     text-decoration: none;
 }
 
+#main-menu a:visited {
+    margin-left: 1em;
+    margin-right: 1em;
+    text-decoration: none;
+    color: black;
+}
+
 .radio-choice{
     list-style-type: none;
 }

@@ -1,143 +1,28 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Visit Later</title>
-		<link rel="stylesheet" href = "{{ url_for('static', filename='styles.css') }}">
-	</head>
-	<body>
-		<div id="content">
-			<nav id = "main-menu">
-				<a href="{{url_for('index')}}"><div class = "main-menu-item"> Home </div></a>
-				<a href="{{url_for('about')}}"><div class = "main-menu-item"> About </div></a> 
-			</nav>
-			<h1> Welcome to Visit Later </h1>
-			<table id="links-table">
-				<b> Save any link to visit it later </b> <br>
-				{% for link in entries %}
-				<tr id = "table-row-{{loop.index0}}" class="table-row">
-					<td id="title-{{loop.index0}}" class="table-cell">{{link[1]}}</td>
-					<td id="url-{{loop.index0}}" class="table-cell">{{link[0]}}</td>
-				</tr>
-				{% endfor %}
-			</table>
-			<br>
-			<hr>
-			<h3> Add Link </h3>
-			<div id="add-link-form-div">
-				<form id = "add-link-form" action="{{url_for('add_link')}}" method="post">
-					{{add_item_form.hidden_tag()}}
-					{{add_item_form.title.label}}
-					<br>
-					{{add_item_form.title(size=20)}}<br><br>
-					{{add_item_form.url.label}}
-					<br>
-					{{add_item_form.url(size=20)}}<br><br>
-					<input type="submit" value="Add Link" name="add-link-button" id="add-link-button" />
-				</form>
-			</div>
-			<hr>
-			<br>
-			<h3> Delete Link </h3>
-			<div id="delete-link-form-div">
-				<form  id = "delete-link-form" action="{{url_for('delete_link')}}" method="post">
-					{{delete_items_form.hidden_tag()}}
-					{{delete_items_form.title.label}}
-					<br>
-					{{delete_items_form.title(size=20)}}
-					<br><br>
-					{{delete_items_form.url.label}}
-					<br>
-					{{delete_items_form.url(size=20)}}
-					<br><br>
-					<fieldset id = "radio-delete-fieldset">
-						<legend>Delete by Field</legend>
-						<ul id="radio-choice-list">
-						{% for subfield in delete_items_form.by_field %}
-							<li class="radio-choice">{{ subfield }} {{subfield.label}}</li>
-						{% endfor %}
-						</ul>
-					</fieldset>
-					<br>
-					<input type="submit" value="Delete Link" name="delete-links-button" id="delete-links-button"  />
-				</form>
-			</div>
-		</div>
-	<script>
-		const missing_title_error = "Title cannot be empty";
-		const missing_url_error = "URL cannot be empty";
+{% extends "base.html" %}
 
-		const add_link_form = document.getElementById("add-link-form");
-		const add_link_title = document.getElementById("title-add");
-		const add_link_url = document.getElementById("url-add");
-		const add_link_button = document.getElementById("add-link-button");
-		const by_field = document.querySelectorAll("input[name='by_field']");
-		const delete_link_form = document.getElementById("delete-link-form");
-		const delete_link_title = document.getElementById("title-delete");
-		const delete_link_url = document.getElementById("url-delete");
-		const delete_link_button = document.getElementById("delete-links-button");
+{% block title %} Home - Visit Later {% endblock %}
 
+{% block content%}
+	<h1> Welcome to Visit Later </h1>
+	
+	{% include 'fragments/links_table.html'%}
 
-		add_link_form.addEventListener('submit', function (e) {
-			
-			if (add_link_title.value.trim() == ''){
-				add_link_title.setCustomValidity(missing_title_error);
-				
-			}
-			else {
-				add_link_title.setCustomValidity("");
-				
-			}
-			if (add_link_url.value.trim() == ''){
-				add_link_url.setCustomValidity(missing_url_error);
-				
-			}
-			else {
-				add_link_url.setCustomValidity("");
-			}
-		
-			if (!add_link_form.checkValidity()) {
-				e.preventDefault();
-				add_link_url.reportValidity();
-				add_link_title.reportValidity();
-			}
-		});
+	<br><hr>
 
-		add_link_url.addEventListener('input', () => {add_link_url.setCustomValidity("");});
-		add_link_title.addEventListener('input', () => {add_link_title.setCustomValidity("");});
+	<h3> Add Link </h3>
+	<div id="add-link-form-div">
+		{% include 'fragments/add_link_form.html'%}
+	</div>
 
-		delete_link_form.addEventListener('submit', function (e) {
-			by_field_selected = document.querySelector("input[name='by_field']:checked").value;
-			if ((by_field_selected == 'title' || by_field_selected =='title-url') && delete_link_title.value.trim() == ''){
-				delete_link_title.setCustomValidity(missing_title_error);
-			}
-			else {
-				delete_link_title.setCustomValidity("");
-			}
-			if ((by_field_selected == 'url' || by_field_selected =='title-url')&& delete_link_url.value.trim() == ''){
-				delete_link_url.setCustomValidity(missing_url_error);
-				
-			}
-			else {
-				delete_link_url.setCustomValidity("");
-			}
-			if (!delete_link_form.checkValidity()) {
-				e.preventDefault();
-				delete_link_url.reportValidity();
-				delete_link_title.reportValidity();
-			}
-		});
+	<hr><br>
 
-		delete_link_url.addEventListener('input', () => {delete_link_url.setCustomValidity("");});
-		delete_link_title.addEventListener('input', () => {delete_link_title.setCustomValidity("");});
-		by_field.forEach(radio => {
-			radio.addEventListener('change', function() {
-					delete_link_url.setCustomValidity("");
-					delete_link_title.setCustomValidity("");
-			});
-		});
+	<h3> Delete Link </h3>
+	<div id="delete-link-form-div">
+			{% include 'fragments/delete_link_form.html'%}
+	</div>
 
+{% endblock %}
 
-
-	</script>
-	</body>
-</html>
+{% block scripts%}
+	<script src="{{ url_for('static', filename='form_validation.js') }}"></script>
+{% endblock %}

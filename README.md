@@ -29,3 +29,6 @@ All testing artifacts are stored in the `tests/manual/` directory.
 
 ---
 
+## Screenshots
+![app screenshot](screenshots/app_screenshot.png)
+

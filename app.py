@@ -27,7 +27,7 @@ def close_connection(exception):
 def insert_into_db(url, title):
     conn = get_db()
     cur = conn.cursor()
-    cur.execute('INSERT INTO entries(url, title) VALUES (?, ?)', (url, title))
+    cur.execute('INSERT INTO entries(url, title) VALUES (?, ?)', (url.strip(), title.strip()))
     conn.commit()
     conn.close()
 
@@ -37,13 +37,13 @@ def delete_from_db(url = None, title = None):
     query = "DELETE FROM entries WHERE "
     if url and title:
         query += 'url = (?) AND title = (?)'
-        cur.execute(query, (url, title))
+        cur.execute(query, (url.strip(), title.strip()))
     elif url and not title:
         query += 'url = (?)'
-        cur.execute(query, (url,))
+        cur.execute(query, (url.strip(),))
     else:
         query += 'title = (?)'
-        cur.execute(query, (title,))
+        cur.execute(query, (title.strip(),))
     conn.commit()
     conn.close()
 

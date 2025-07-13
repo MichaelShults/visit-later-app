@@ -18,14 +18,14 @@
 
 ## Bugs Found
 ### **BUG-006:** Delete by 'title and URL' proceeds with only one input filled
-**Description:** When "Delete by Fields" is set to "Title and URL", and only one of the fields is filled in (with a Title / URL that exists in the item list), deletion is performed based on the filled in field.
-**Expected result:**  An error message for the user and no items are deleted.
+**Description:** When "Delete by Fields" is set to "Title and URL", and only one of the fields is filled in (with a Title / URL that exists in the item list), deletion is performed based on the filled in field.  
+**Expected result:**  An error message for the user and no items are deleted.  
 **Actual result:** An item is deleted according to the non-empty field.
 
 ### **BUG-007:** Deleting by Title with a very long title, when title doesn't exist in db entry, causes 'Request Entity Too Large' error
-**Description:** Filling a very long string in the Title field for the delete form, selecting 'delete by title', then clicking the 'delete url' button (which submits the form) causes a server error.
-**Expected result:** Redirecting back to 'index', and displaying a more user friendly error near the delete form.
-**Actual result:** redirects to 'localhost:5000/delete' and renders a server error:
+**Description:** Filling a very long string in the Title field for the delete form, selecting 'delete by title', then clicking the 'delete url' button (which submits the form) causes a server error.  
+**Expected result:** Redirecting back to 'index', and displaying a more user friendly error near the delete form.  
+**Actual result:** redirects to `localhost:5000/delete` and renders a server error:
 "Request Entity Too Large
 The data value transmitted exceeds the capacity limit."
 

@@ -1,12 +1,12 @@
-STD Version: 1.2  
-Author: Michael Shults  
-Date: 17/06/2025  
-Last Updated: 03/07/2025  
+**STD Version: 1.2**  
+**Author**: Michael Shults  
+**Date**: 17/06/2025  
+**Last Updated**: 03/07/2025  
 
 ## Introduction
-This STD is about testing v0.0.5-pre of our app.  
-It is based on tests/manual/STP/test_plan_v2.md and on spec/visit_later_spec.md.  
-Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md  
+This STD is about testing `v0.0.5-pre` of our app.  
+It is based on `tests/manual/STP/test_plan_v2.md` and on `spec/visit_later_spec.md`.  
+Testing results are recorded in `tests/manual/STR/STR_v0.0.5-pre.md  `
 
 ## Features that will be tested (STP/test_plan_v2.md)
 - Static content of 'index' page and presence of menu links - #1 in STP
@@ -21,8 +21,10 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
     - **TestDatabase:** `database/db.sqlite` 
     - **UnmodifiedDatabase:** `test_databases_read_only/db.sqlite`  
         - **Database Schema:** `(id, url, title)`
-            - id (autoincrement PK) is present but not visible in UI or used in tests   
-        - **Rows:** (url = 'www.google.com', title = 'google'), (url = 'www.wikipedia.com', title = 'wikipedia')
+            - `id` (autoincrement PK) is present but not visible in UI or used in tests   
+        - **Rows:** 
+            - `url`='www.google.com', `title` = 'google'
+            - `url` = 'www.wikipedia.com', `title` = 'wikipedia'
 - **Strings for TC19, TC20:**
     - Can be generated with the Python interpreter by typing the command: `NUMBER_OF_CHARACTERS * 'a'` and then hitting enter.
         - 300 character string = `300 * 'a'`
@@ -65,14 +67,14 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
             4. 'Delete Link' button
             5. Radio input: 
                 1. Legend: 'Delete by Field'
-                2. 3 radio options with the labels ('Title', 'URL', 'Title and URL')
+                2. Three radio options with the labels ('Title', 'URL', 'Title and URL')
 
 ---
 
 ## Add Link:
 ### Steps
 #### For each test case:
-1. Run 'scripts/reset_test_database.ps1' to reset test database.
+1. Run `scripts/reset_test_database.ps1` to reset test database.
 2. Open `localhost:5000` in the browser.
 3. Fill in the provided 'Title' and 'URL' values in the 'Add Link' form.
 4. Click the 'Add Link' button and observe what happens next.
@@ -94,7 +96,7 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 ## Delete Link - by Title or by URL:
 ### Steps
 #### For each test case:
-1. Run 'scripts/reset_test_database.ps1' to reset test database.
+1. Run `scripts/reset_test_database.ps1` to reset test database.
 2. Open `localhost:5000` in the browser.
 3. In the 'Delete Link' form, select the provided 'Delete by Field' radio option, and fill in 'Title' and 'URL' values.
 4. Click the 'Delete Link' button and observe what happens next.
@@ -131,7 +133,7 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 ## Delete Link - by Title and URL:
 ### Steps
 #### For each test case:
-1. Run 'scripts/reset_test_database.ps1' to reset test database.
+1. Run `scripts/reset_test_database.ps1` to reset test database.
 2. Open `localhost:5000` in the browser.
 3. In the 'Delete Link' form:
     1. Select the 'Title and URL' option in the 'Delete by Field' radio choice.
@@ -174,11 +176,11 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 - **STP Features:** 4
 - **Priority:** Medium
 ### Steps
-1. Run 'scripts/reset_test_database.ps1' to reset test database.
+1. Run `scripts/reset_test_database.ps1` to reset test database.
 2. Open `localhost:5000` in the browser.
 3. In the 'Add Link' form paste the 300 character string into the 'Title' field, and then the 500 character string into the 'URL' field
 4. Count the number of characters that are now displayed in each field.
-    1. you can use 'https://www.grammarly.com/word-counter' - copy the field content and paste it into the word-counter textbox. Note the 'Characters without spaces' number.
+    1. You can use 'https://www.grammarly.com/word-counter' - copy the field content and paste it into the word-counter textbox. Note the 'Characters without spaces' number.
 5. repeat steps 1,2 for the 'Delete Link' form.
 ### Expected Results:
 1. The character counts for both the 'Title' fields is exactly 300
@@ -191,11 +193,11 @@ Testing results are recorded in tests/manual/STR/STR_v0.0.5-pre.md
 - **STP Features:** 4
 - **Priority:** Medium
 ### Steps
-1. Run 'scripts/reset_test_database.ps1' to reset test database.
+1. Run `scripts/reset_test_database.ps1` to reset test database.
 2. Open `localhost:5000` in the browser.
 3. In the 'Add Link' form paste the 301 character string into the 'Title' field, and then the 501 character string into the 'URL' field
 4. Count the number of characters that are now displayed in each field.
-    1. you can use 'https://www.grammarly.com/word-counter' - copy the field content and paste it into the word-counter textbox. Note the 'Characters without spaces' number.
+    1. You can use 'https://www.grammarly.com/word-counter' - copy the field content and paste it into the word-counter textbox. Note the 'Characters without spaces' number.
 5. repeat steps 1,2 for the 'Delete Link' form.
 ### Expected Results:
 1. Inputs are truncated:

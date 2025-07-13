@@ -1,9 +1,9 @@
 # Visit Later App - Functional Specification
 
-**Author**: Michael Shults
-**Date**: 21/06/2025
-**Last Updated**: 11/07/2025
-**App Version**: 0.0.5  
+**Author**: Michael Shults  
+**Date**: 21/06/2025  
+**Last Updated**: 11/07/2025  
+**App Version**: `v0.0.5-pre` and later versions  
 **Spec Version**: 1.1
 
 **Context**: Written after the `v0.0.5-pre` version tag was pushed to GitHub. This document reflects desired specification, and currently not all functionality and UI is implemented according to this spec.
@@ -70,7 +70,7 @@ Purpose: Establish ground truth for functionality and UI, to bring clarity to th
     1. Two item menu, 'Home' on the left and 'About' on the right
         1. The items are rectangular buttons, with consistent spacing and black text, even after they are visited.
     2. A title, 'Contact Us', large black text
-    3. Text encouraging user to contact us with any feedback or problems encountered, that includes a `mailto:` link to the the email address 'contact@example.com'. Text is black, link is blue both visited and unvisited.
+    3. Text encouraging user to contact us with any feedback or problems encountered, that includes a `mailto:` link to the the email address `contact@example.com`. Text is black, link is blue both visited and unvisited.
 
 
 ## Functionality
@@ -88,13 +88,13 @@ When a menu button is clicked:
     - Bypassing the frontend and sending malformed requests may create unexpected behaviors.
 - Rules to enforce:
     - Maximum input size:
-     - Title: 300 characters
-     - URL: 500 characters
+        - Title: 300 characters
+        - URL: 500 characters
     - Minimum input size:
         - Title: 1 non whitespace character
         - URL: 1 non whitespace character
     - Title and URL cannot be a sequence of whitespace characters. They must contain at least one non whitespace character
-    - URL and title are trimmed (`.trim()`) of whitespaces on the backend.
+    - URL and title are trimmed of leading and trailing whitespaces on the backend.
 - Not enforced:
     - URL validation
     - Limits on the allowed characters in the inputs.
@@ -113,20 +113,20 @@ When a menu button is clicked:
     - Bypassing the frontend and sending malformed requests may create unexpected behaviors.
 - Rules to enforce:
     - Maximum input size:
-     - Title: 300 characters
-     - URL: 500 characters
+        - Title: 300 characters
+        - URL: 500 characters
     - 'Delete by field' radio buttons:
         - If 'Title' is selected:
             - 'Title' field must not be empty or a whitespace sequence to proceed with deletion.
             - 'URL' field can be either empty or not, and is ignored on form submission.
-            - 'Title' is trimmed (`.trim()`) of whitespaces on the backend.
+            - 'Title' is trimmed of leading and trailing whitespaces on the backend.
         - If 'URL' is selected:
             - 'URL' field must not be empty or a whitespace sequence to proceed with deletion.
             - 'Title' field can be either empty or not, and is ignored on form submission.
-            - 'URL' is trimmed (`.trim()`) of whitespaces on the backend.
+            - 'URL' is trimmed of leading and trailing whitespaces on the backend.
         - If 'Title and URL' is selected:
             - 'URL' and 'Title' fields must not be empty or a whitespace sequences to proceed with deletion.
-            - 'URL' and 'Title' are trimmed (`.trim()`) of whitespaces on the backend
+            - 'URL' and 'Title' are trimmed of leading and trailing whitespaces on the backend.
 - Not enforced:
     - URL validation
     - Limits on the allowed characters in the inputs.
